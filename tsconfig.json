@@ -16,6 +16,12 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@dogs/*": ["src/dogs/*"],
+      "@users/*": ["src/users/*"],
+      "@sponsorship/*": ["src/sponsorship/*"],
+      "@adoption/*": ["src/adoption/*"]
+    }
   }
 }
