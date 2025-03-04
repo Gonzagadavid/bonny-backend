@@ -1,26 +1,57 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateSponsorshipDto } from './dto/create-sponsorship.dto';
-import { UpdateSponsorshipDto } from './dto/update-sponsorship.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Sponsorship } from './schemas/sponsorship.schema';
+import { Model } from 'mongoose';
+import { User } from '@users/schemas/user.schema';
+import { Dog } from '@dogs/schemas/dog.schema';
 
 @Injectable()
 export class SponsorshipService {
-  create(createSponsorshipDto: CreateSponsorshipDto) {
-    return 'This action adds a new sponsorship';
+  constructor(
+    @InjectModel(Sponsorship.name)
+    private sponsorshipModel: Model<Sponsorship>,
+  ) {}
+
+  async create(createSponsorshipDto: CreateSponsorshipDto) {
+    const exists = await this.sponsorshipModel.findOne({
+      dog: createSponsorshipDto.dog,
+      user: createSponsorshipDto.user,
+    });
+    if (exists) {
+      throw new HttpException(
+        `This relationship is already registered`,
+        HttpStatus.CONFLICT,
+      );
+    }
+    return this.sponsorshipModel.create(createSponsorshipDto);
   }
 
   findAll() {
-    return `This action returns all sponsorship`;
+    return this.sponsorshipModel
+      .find()
+      .populate('user', null, User.name)
+      .populate('dog', null, Dog.name)
+      .exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} sponsorship`;
+  findUsersByDog(dog: string) {
+    return this.sponsorshipModel
+      .find({ dog })
+      .select(['-dog'])
+      .populate('user', null, User.name)
+      .exec();
   }
 
-  update(id: number, updateSponsorshipDto: UpdateSponsorshipDto) {
-    return `This action updates a #${id} sponsorship`;
+  findDogsByUser(user: string) {
+    return this.sponsorshipModel
+      .find({ user })
+      .select(['-user'])
+      .populate('dog', null, Dog.name)
+      .exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} sponsorship`;
+  findOne(id: string) {
+    return this.sponsorshipModel.findById(id);
   }
 }

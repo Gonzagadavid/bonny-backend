@@ -1,45 +1,33 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { SponsorshipService } from './sponsorship.service';
 import { CreateSponsorshipDto } from './dto/create-sponsorship.dto';
-import { UpdateSponsorshipDto } from './dto/update-sponsorship.dto';
 
 @Controller('sponsorship')
 export class SponsorshipController {
-  constructor(private readonly sponsorshipService: SponsorshipService) {}
+  constructor(private readonly SponsorshipService: SponsorshipService) {}
 
   @Post()
   create(@Body() createSponsorshipDto: CreateSponsorshipDto) {
-    return this.sponsorshipService.create(createSponsorshipDto);
+    return this.SponsorshipService.create(createSponsorshipDto);
   }
 
   @Get()
   findAll() {
-    return this.sponsorshipService.findAll();
+    return this.SponsorshipService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.sponsorshipService.findOne(+id);
+    return this.SponsorshipService.findOne(id);
   }
 
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateSponsorshipDto: UpdateSponsorshipDto,
-  ) {
-    return this.sponsorshipService.update(+id, updateSponsorshipDto);
+  @Get('users-by-dog/:dogId')
+  findSponsorsByDog(@Param('dogId') dogId: string) {
+    return this.SponsorshipService.findUsersByDog(dogId);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.sponsorshipService.remove(+id);
+  @Get('dogs-by-user/:userId')
+  findDogsByUsers(@Param('userId') userId: string) {
+    return this.SponsorshipService.findDogsByUser(userId);
   }
 }
