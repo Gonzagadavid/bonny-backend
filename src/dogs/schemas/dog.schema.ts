@@ -44,6 +44,9 @@ export class Dog {
 
   @Prop()
   createdAt: Date;
+
+  _id: string;
+  _doc: Dog;
 }
 
 export const DogSchema = SchemaFactory.createForClass(Dog);

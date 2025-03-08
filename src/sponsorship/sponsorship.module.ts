@@ -12,5 +12,6 @@ import { Sponsorship, SponsorshipSchema } from './schemas/sponsorship.schema';
   ],
   controllers: [SponsorshipController],
   providers: [SponsorshipService],
+  exports: [SponsorshipService],
 })
 export class SponsorshipModule {}

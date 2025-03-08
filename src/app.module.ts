@@ -6,6 +6,7 @@ import { AdoptionModule } from './adoption/adoption.module';
 import { SponsorshipModule } from './sponsorship/sponsorship.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
+import { DonationsModule } from './donations/donations.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { ConfigModule } from '@nestjs/config';
     SponsorshipModule,
     MongooseModule.forRoot(process.env.DB_URL ?? ''),
     ConfigModule.forRoot(),
+    DonationsModule,
   ],
   controllers: [],
   providers: [AppService],

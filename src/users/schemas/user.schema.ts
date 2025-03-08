@@ -19,6 +19,9 @@ export class User {
 
   @Prop()
   about: string;
+
+  _id: string;
+  _doc: User;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
