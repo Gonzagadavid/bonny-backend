@@ -9,7 +9,10 @@ export class User {
   name: string;
 
   @Prop()
-  age: number;
+  birthDate: string;
+
+  @Prop()
+  individualTaxpayerRegistry: string;
 
   @Prop()
   email: string;

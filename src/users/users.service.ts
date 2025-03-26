@@ -10,10 +10,12 @@ export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
   async create(createUserDto: CreateUserDto) {
-    const exits = await this.findByEmail(createUserDto.email);
+    const exits = await this.findByTaxpayer(
+      createUserDto.individualTaxpayerRegistry,
+    );
     if (exits) {
       throw new HttpException(
-        `O email ${createUserDto.email} is already registered`,
+        `O individual taxpayer registry ${createUserDto.individualTaxpayerRegistry} is already registered`,
         HttpStatus.CONFLICT,
       );
     }
@@ -24,7 +26,7 @@ export class UsersService {
     return this.userModel.find();
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.userModel.findById(id);
   }
 
@@ -32,11 +34,15 @@ export class UsersService {
     return this.userModel.findOne({ email });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
+  findByTaxpayer(individualTaxpayerRegistry: string) {
+    return this.userModel.findOne({ individualTaxpayerRegistry });
+  }
+
+  update(id: string, updateUserDto: UpdateUserDto) {
     return this.userModel.updateOne({ _id: id }, updateUserDto);
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.userModel.deleteOne({ _id: id });
   }
 }

@@ -14,7 +14,7 @@ export class DogsService {
   }
 
   findAll(): Promise<Dog[]> {
-    return this.dogModel.find().populate('sponsors', null).exec();
+    return this.dogModel.find().exec();
   }
 
   findOne(id: string) {
