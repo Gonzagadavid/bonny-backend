@@ -30,7 +30,7 @@ export class SponsorshipService {
   findAll() {
     return this.sponsorshipModel
       .find()
-      .populate('user', null, User.name)
+      .populate('user', ['-password'], User.name)
       .populate('dog', null, Dog.name)
       .exec();
   }
@@ -39,7 +39,7 @@ export class SponsorshipService {
     return this.sponsorshipModel
       .find({ dog })
       .select(['-dog'])
-      .populate('user', null, User.name)
+      .populate('user', ['-password'], User.name)
       .exec();
   }
 

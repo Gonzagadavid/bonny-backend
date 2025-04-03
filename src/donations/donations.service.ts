@@ -76,7 +76,7 @@ export class DonationsService {
     const donations = await this.donationModel
       .find({ dog: dogId })
       .select(['-dog'])
-      .populate('user', null, User.name);
+      .populate('user', ['-password'], User.name);
 
     if (!donations) return [];
 

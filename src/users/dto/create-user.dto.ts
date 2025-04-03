@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString } from 'class-validator';
+import { UserRole } from '@users/schemas/user.schema';
+import { IsEnum, IsString } from 'class-validator';
 
 export class CreateUserDto {
   @ApiProperty({ example: 'John Wick', description: 'The name of people' })
@@ -28,11 +29,11 @@ export class CreateUserDto {
   cellPhone: string;
 
   @ApiProperty({
-    example: 'I am a retired person who loves dogs, I have already adopted two',
-    description: 'Description about people',
+    example: '!@EXpl30',
+    description: 'Password to access platform',
   })
   @IsString()
-  about: string;
+  password: string;
 
   @ApiProperty({
     example: '05413682069',
@@ -40,4 +41,11 @@ export class CreateUserDto {
   })
   @IsString()
   individualTaxpayerRegistry: string;
+
+  @ApiProperty({
+    example: 'USER',
+    description: 'The user role: ADMIN | USER | VOLUNTEER',
+  })
+  @IsEnum(UserRole)
+  role: UserRole;
 }
