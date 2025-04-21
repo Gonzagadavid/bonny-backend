@@ -30,6 +30,11 @@ export class DogsController {
     return this.dogsService.findAll();
   }
 
+  @Get('/available')
+  findAllAvailable() {
+    return this.dogsService.findAllAvailable();
+  }
+
   @Get(':id')
   async findOne(@Param('id') id: string) {
     const dog = await this.dogsService.findOne(id);
