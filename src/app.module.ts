@@ -8,6 +8,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { DonationsModule } from './donations/donations.module';
 import { AuthModule } from './auth/auth.module';
+import { FormsModule } from './forms/forms.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { AuthModule } from './auth/auth.module';
     ConfigModule.forRoot(),
     DonationsModule,
     AuthModule,
+    FormsModule,
   ],
   controllers: [],
   providers: [AppService],
