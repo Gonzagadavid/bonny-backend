@@ -9,6 +9,7 @@ import { ConfigModule } from '@nestjs/config';
 import { DonationsModule } from './donations/donations.module';
 import { AuthModule } from './auth/auth.module';
 import { FormsModule } from './forms/forms.module';
+import { FormAnswersModule } from './form-answers/form-answers.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { FormsModule } from './forms/forms.module';
     DonationsModule,
     AuthModule,
     FormsModule,
+    FormAnswersModule,
   ],
   controllers: [],
   providers: [AppService],

@@ -30,6 +30,10 @@ export class FormsService {
     await this.formModel.updateOne({_id: id}, { active: true })
   }
 
+  findActiveForm() {
+    return this.formModel.findOne({active: true})
+  }
+
   findAll() {
     return this.formModel.find()
   }

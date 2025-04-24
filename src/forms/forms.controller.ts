@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, UseGuards, Request } from '@nestjs/common';
 import { FormsService } from './forms.service';
 import { CreateFormDto } from './dto/create-form.dto';
 import { Roles } from 'src/auth/roles.decorator';
@@ -21,6 +21,12 @@ export class FormsController {
     return this.formsService.activeForm(id)
   }
   
+  @Get('/active-form')
+  findActiveForm() {
+    return this.formsService.findActiveForm();
+  }
+
+
   @Get()
   findAll() {
     return this.formsService.findAll();

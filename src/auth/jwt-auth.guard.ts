@@ -24,7 +24,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
 
   handleRequest(err, { user }, info, context: ExecutionContext) {
     const { requiredRoles } = context.switchToHttp().getRequest();
-    const isAllowed = checkPermissions(requiredRoles, user.role);
+    const isAllowed = checkPermissions(requiredRoles, user?.role);
 
     if (err || !user || !isAllowed) {
       throw err || new UnauthorizedException();
