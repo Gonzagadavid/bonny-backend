@@ -12,7 +12,7 @@ export class FormAnswersService {
 
 
   create(createFormAnswerDto: CreateFormAnswerDto, user:UserPayload) {
-    return  this.formAnswerModel.create(
+    return this.formAnswerModel.create(
       {
         ...createFormAnswerDto, 
         userId: user.userId, 
@@ -23,6 +23,12 @@ export class FormAnswersService {
 
   findAll() {
     return `This action returns all formAnswers`;
+  }
+
+  async findOneByUser(userId: string) {
+    const [formAnswer] = await this.formAnswerModel.find({ userId }).sort({createdAt: -1});
+
+    return formAnswer
   }
 
   findOne(id: number) {

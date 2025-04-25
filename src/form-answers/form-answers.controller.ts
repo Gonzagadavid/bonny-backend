@@ -27,6 +27,11 @@ export class FormAnswersController {
     return this.formAnswersService.findOne(+id);
   }
 
+  @Get('/by-user/:id')
+  findOneByUser(@Param('id') id: string) {
+    return this.formAnswersService.findOneByUser(id);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateFormAnswerDto: UpdateFormAnswerDto) {
     return this.formAnswersService.update(+id, updateFormAnswerDto);
