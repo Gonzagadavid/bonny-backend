@@ -18,7 +18,7 @@ export class DogsService {
   }
 
   findAllAvailable(): Promise<Dog[]> {
-    return this.dogModel.find({available: true }).exec();
+    return this.dogModel.find({ available: true }).exec();
   }
 
   findOne(id: string) {

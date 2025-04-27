@@ -5,9 +5,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Form, FormSchema } from './schemas/form.schema';
 
 @Module({
-    imports: [
-      MongooseModule.forFeature([{ name: Form.name, schema: FormSchema }]),
-    ],
+  imports: [
+    MongooseModule.forFeature([{ name: Form.name, schema: FormSchema }]),
+  ],
   controllers: [FormsController],
   providers: [FormsService],
 })

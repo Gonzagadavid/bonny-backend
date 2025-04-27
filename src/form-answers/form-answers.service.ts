@@ -8,17 +8,17 @@ import { UserPayload } from 'src/auth/auth.service';
 
 @Injectable()
 export class FormAnswersService {
-  constructor(@InjectModel(FormAnswer.name) private formAnswerModel: Model<FormAnswer>) {}
+  constructor(
+    @InjectModel(FormAnswer.name) private formAnswerModel: Model<FormAnswer>,
+  ) {}
 
-
-  create(createFormAnswerDto: CreateFormAnswerDto, user:UserPayload) {
-    return this.formAnswerModel.create(
-      {
-        ...createFormAnswerDto, 
-        userId: user.userId, 
-        createdAt: new Date(), 
-        answers: JSON.stringify(createFormAnswerDto.answers)
-      }) ;
+  create(createFormAnswerDto: CreateFormAnswerDto, user: UserPayload) {
+    return this.formAnswerModel.create({
+      ...createFormAnswerDto,
+      userId: user.userId,
+      createdAt: new Date(),
+      answers: JSON.stringify(createFormAnswerDto.answers),
+    });
   }
 
   findAll() {
@@ -26,9 +26,11 @@ export class FormAnswersService {
   }
 
   async findOneByUser(userId: string) {
-    const [formAnswer] = await this.formAnswerModel.find({ userId }).sort({createdAt: -1});
+    const [formAnswer] = await this.formAnswerModel
+      .find({ userId })
+      .sort({ createdAt: -1 });
 
-    return formAnswer
+    return formAnswer;
   }
 
   findOne(id: number) {

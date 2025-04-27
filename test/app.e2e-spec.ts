@@ -7,6 +7,7 @@ import { TestAppModule } from './test-app.module';
 import { DogSize, DogFell } from '../src/dogs/dto/create-dog.dto';
 import mongoose, { ConnectionStates } from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
+import { App } from 'supertest/types';
 
 jest.setTimeout(30000);
 
@@ -56,7 +57,7 @@ describe('DogsController (e2e)', () => {
       available: true,
     };
 
-    const response = await request(app.getHttpServer())
+    const response = await request(app.getHttpServer() as App)
       .post('/dogs')
       .send(dogDto)
       .expect(HttpStatus.CREATED);
@@ -66,7 +67,7 @@ describe('DogsController (e2e)', () => {
   });
 
   it('/GET dogs', async () => {
-    const response = await request(app.getHttpServer())
+    const response = await request(app.getHttpServer() as App)
       .get('/dogs')
       .expect(HttpStatus.OK);
 
@@ -74,7 +75,7 @@ describe('DogsController (e2e)', () => {
   });
 
   it('/GET dogs/:id', async () => {
-    const response = await request(app.getHttpServer())
+    const response = await request(app.getHttpServer() as App)
       .get(`/dogs/${createdDog._id}`)
       .expect(HttpStatus.OK);
 
@@ -84,7 +85,7 @@ describe('DogsController (e2e)', () => {
   it('/PATCH dogs/:id', async () => {
     const updateDto = { name: 'Buddy' };
 
-    const response = await request(app.getHttpServer())
+    const response = await request(app.getHttpServer() as App)
       .patch(`/dogs/${createdDog._id}`)
       .send(updateDto)
       .expect(HttpStatus.OK);
@@ -93,7 +94,7 @@ describe('DogsController (e2e)', () => {
   });
 
   it('/DELETE dogs/:id', async () => {
-    await request(app.getHttpServer())
+    await request(app.getHttpServer() as App)
       .delete(`/dogs/${createdDog._id}`)
       .expect(HttpStatus.OK);
 

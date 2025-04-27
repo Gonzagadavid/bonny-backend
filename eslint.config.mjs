@@ -33,10 +33,9 @@ export default tseslint.config(
       '@typescript-eslint/no-unsafe-call': 'off',
       'no-console': 'warn',
       '@typescript-eslint/no-unsafe-return': 'off',
-      'no-unused-vars': [
+      '@typescript-eslint/no-unused-vars': [
         'error',
-        { argsIgnorePattern: '^_' },
-        { args: 'none' },
+        { argsIgnorePattern: '^_', args: 'none' },
       ],
     },
   },

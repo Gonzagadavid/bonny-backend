@@ -30,9 +30,9 @@ export class AuthService {
     } = user;
     return { name, email, role, individualTaxpayerRegistry, cellPhone, userId };
   }
-  async login(userPayload: UserPayload) {
+  login(userPayload?: UserPayload) {
     return {
-      access_token: this.jwtService.sign(userPayload),
+      access_token: this.jwtService.sign(userPayload as unknown as string),
     };
   }
 }
