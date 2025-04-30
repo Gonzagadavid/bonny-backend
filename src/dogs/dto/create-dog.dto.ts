@@ -11,6 +11,12 @@ export enum DogFell {
   SHORT = 'SHORT',
   LONG = 'LONG',
 }
+
+export enum GenderEnum {
+  MALE = 'MALE',
+  FEMALE = 'FEMALE',
+}
+
 export class CreateDogDto {
   @ApiProperty({ example: 'Rex', description: 'The name of the dog' })
   @IsString()
@@ -43,6 +49,14 @@ export class CreateDogDto {
   })
   @IsEnum(DogFell)
   readonly fell: DogFell;
+
+  @ApiProperty({
+    example: 'MALE',
+    enum: GenderEnum,
+    description: 'The dog gender',
+  })
+  @IsEnum(GenderEnum)
+  readonly gender: GenderEnum;
 
   @ApiProperty({
     example: 'Friendly',

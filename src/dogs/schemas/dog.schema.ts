@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-import { DogFell, DogSize } from '@dogs/dto/create-dog.dto';
+import { DogFell, DogSize, GenderEnum } from '@dogs/dto/create-dog.dto';
 
 export type DogDocument = HydratedDocument<Dog>;
 
@@ -44,6 +44,9 @@ export class Dog {
 
   @Prop()
   createdAt: Date;
+
+  @Prop()
+  gender: GenderEnum;
 
   _id: string;
   _doc: Dog;
