@@ -33,4 +33,12 @@ export class DogsService {
   remove(id: string) {
     return this.dogModel.deleteOne({ _id: id });
   }
+
+  activateAvailable(id: string) {
+    return this.dogModel.updateOne({ _id: id }, { available: true });
+  }
+
+  deactivateAvailable(id: string) {
+    return this.dogModel.updateOne({ _id: id }, { available: false });
+  }
 }

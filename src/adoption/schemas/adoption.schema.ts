@@ -1,13 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
-import { CandidacyStatus } from '../dto/create-candidacy.dto';
 import { User } from '@users/schemas/user.schema';
 import { Dog } from '@dogs/schemas/dog.schema';
 
-export type CandidacyDocument = HydratedDocument<Candidacy>;
+export type AdoptionDocument = HydratedDocument<Adoption>;
 
 @Schema()
-export class Candidacy {
+export class Adoption {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   user: User;
 
@@ -15,12 +14,15 @@ export class Candidacy {
   dog: Dog;
 
   @Prop()
-  status: CandidacyStatus;
+  createdAt: Date;
 
   @Prop()
-  createdAt: Date;
+  lastCheck: Date;
+
+  @Prop()
+  deletedAt: Date;
 
   _id: string;
 }
 
-export const CandidacySchema = SchemaFactory.createForClass(Candidacy);
+export const AdoptionSchema = SchemaFactory.createForClass(Adoption);

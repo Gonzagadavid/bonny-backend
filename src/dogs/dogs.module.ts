@@ -8,5 +8,6 @@ import { Dog, DogSchema } from '@dogs/schemas/dog.schema';
   imports: [MongooseModule.forFeature([{ name: Dog.name, schema: DogSchema }])],
   controllers: [DogsController],
   providers: [DogsService],
+  exports: [DogsService],
 })
 export class DogsModule {}

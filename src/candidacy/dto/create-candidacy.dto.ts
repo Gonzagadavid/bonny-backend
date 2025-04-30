@@ -1,6 +1,5 @@
 export enum CandidacyStatus {
   PENDING = 'PENDING',
-  IN_PROCESS = 'IN_PROCESS',
   REJECTED = 'REJECTED',
   CANCELED = 'CANCELED',
   APPROVED = 'APPROVED',
