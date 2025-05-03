@@ -30,7 +30,10 @@ export class CandidacyService {
       );
     }
 
-    return this.candidacyModel.create(createCandidacyDto);
+    return this.candidacyModel.create({
+      createCandidacyDto,
+      createdAt: new Date(),
+    });
   }
 
   findAllByUser(user: string) {

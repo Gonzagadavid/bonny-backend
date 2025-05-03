@@ -5,6 +5,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Adoption } from './schemas/adoption.schema';
 import { Model } from 'mongoose';
 import { DogsService } from '@dogs/dogs.service';
+import { User } from '@users/schemas/user.schema';
+import { Dog } from '@dogs/schemas/dog.schema';
 
 @Injectable()
 export class AdoptionService {
@@ -24,7 +26,10 @@ export class AdoptionService {
   }
 
   findAll() {
-    return `This action returns all adoption`;
+    return this.AdoptionModel.find()
+      .populate('user', ['-password'], User.name)
+      .populate('dog', null, Dog.name)
+      .exec();
   }
 
   findOne(id: number) {
