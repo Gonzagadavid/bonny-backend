@@ -36,11 +36,11 @@ export class AdoptionService {
     return `This action returns a #${id} adoption`;
   }
 
-  update(id: number, updateAdoptionDto: UpdateAdoptionDto) {
-    return `This action updates a #${id} adoption`;
+  update(id: string, updateAdoptionDto: UpdateAdoptionDto) {
+    return this.AdoptionModel.updateOne({ _id: id }, { ...updateAdoptionDto });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} adoption`;
+  remove(id: string) {
+    return this.AdoptionModel.updateOne({ _id: id }, { deletedAt: new Date() });
   }
 }

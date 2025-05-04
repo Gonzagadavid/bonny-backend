@@ -31,7 +31,7 @@ export class CandidacyService {
     }
 
     return this.candidacyModel.create({
-      createCandidacyDto,
+      ...createCandidacyDto,
       createdAt: new Date(),
     });
   }

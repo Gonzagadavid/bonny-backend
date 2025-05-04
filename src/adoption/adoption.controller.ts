@@ -35,11 +35,11 @@ export class AdoptionController {
     @Param('id') id: string,
     @Body() updateAdoptionDto: UpdateAdoptionDto,
   ) {
-    return this.adoptionService.update(+id, updateAdoptionDto);
+    return this.adoptionService.update(id, updateAdoptionDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.adoptionService.remove(+id);
+    return this.adoptionService.remove(id);
   }
 }
