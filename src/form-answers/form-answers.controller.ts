@@ -23,7 +23,7 @@ export class FormAnswersController {
 
   @Post()
   @UseGuards(JwtAuthGuard)
-  @Roles(UserRole.VOLUNTEER)
+  @Roles(UserRole.USER)
   create(
     @Body() createFormAnswerDto: CreateFormAnswerDto,
     @Request() { user },
